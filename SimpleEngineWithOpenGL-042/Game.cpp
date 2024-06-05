@@ -98,8 +98,9 @@ void Game::load()
 	fps-> setPosition(Vector3(0, 0, 550));
 
 	std::vector<std::vector<int>> level = loadLevel("level.txt");
+	std::vector<std::vector<int>> level2 = loadLevel("level2.txt");
 
-	const float cubeSize = 500.0f;
+	const Vector3 cubeSize = Vector3(500.0f, 500.0f, 500.0f);
 	const float startX = -1250.0f;
 	const float startY = -1250.0f;
 
@@ -110,7 +111,7 @@ void Game::load()
 			if (level[y][x] == 1)
 			{
 				CubeActor* cube = new CubeActor();
-				cube->setPosition(Vector3(startX + x * cubeSize, startY + y * cubeSize, 0.0f));
+				cube->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
 				cube->setScale(cubeSize);
 			}
 			else if (level[y][x] == 2)
@@ -123,6 +124,19 @@ void Game::load()
 			}
 			
 		}
+
+		for (size_t y = 0; y < level.size(); ++y)
+		{
+			for (size_t x = 0; x < level[y].size(); ++x)
+			{
+				if (level[y][x] == 1)
+				{
+					CubeActor* cube = new CubeActor();
+					cube->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 550));
+					cube->setScale(Vector3(500.0f, 500.0f, 1000.0f));
+				}
+			}
+		}	
 	}
 
 	// CubeActor* a = new CubeActor();
@@ -143,6 +157,16 @@ void Game::load()
 		{
 			PlaneActor* p = new PlaneActor();
 			p->setPosition(Vector3(start + i * size, start + j * size, -100.0f));
+		}
+	}
+
+	// Setup floor 2
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			PlaneActor* p = new PlaneActor();
+			p->setPosition(Vector3(start + i * size, start + j * size, 550.0f));
 		}
 	}
 /*
@@ -182,14 +206,14 @@ void Game::load()
 	// Create spheres with audio components playing different sounds
 	SphereActor* soundSphere = new SphereActor();
 	soundSphere->setPosition(Vector3(500.0f, -75.0f, 0.0f));
-	soundSphere->setScale(1.0f);
+	soundSphere->setScale(Vector3(1.0f, 1.0f, 1.0f));
 
 
 	// HUD
 	hud = new HUD();
 	
 	Actor* crosshairActor = new Actor();
-	crosshairActor->setScale(2.0f);
+	crosshairActor->setScale(Vector3(2.0f,2.0f,2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 
 	
@@ -397,4 +421,15 @@ void Game::removePlane(PlaneActor* plane)
 {
 	auto iter = std::find(begin(planes), end(planes), plane);
 	planes.erase(iter);
+}
+
+void Game::addCubes(CubeActor* cube)
+{
+	cubes.emplace_back(cube);
+}
+
+void Game::removeCubes(CubeActor* cube)
+{
+	auto iter = std::find(begin(cubes), end(cubes), cube);
+	cubes.erase(iter);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Actor.h"
+#include "CubeActor.h"
 #include "SpriteComponent.h"
 #include "Window.h"
 #include "Vector2.h"
@@ -58,7 +59,10 @@ public:
 	// Game-specific
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
+	void addCubes(class CubeActor* cube);
+	void removeCubes(class CubeActor* cube);
 	vector<PlaneActor*>& getPlanes() { return planes; }
+	vector<CubeActor*>& getCubes() { return cubes; }
 	class FPSActor* getPlayer() { return fps; }
 
 private:
@@ -83,6 +87,7 @@ private:
 
 	class FPSActor* fps;
 	class SpriteComponent* crosshair;
+	vector<CubeActor*> cubes;
 	vector<PlaneActor*> planes;
 };
 
