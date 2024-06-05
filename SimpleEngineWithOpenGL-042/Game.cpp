@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include <algorithm>
+#include <sstream>
 
 #include "Actor.h"
 #include "Timer.h"
@@ -26,6 +27,33 @@ bool Game::initialize()
 	bool isFontInit = Font::initialize();
 
 	return isWindowInit && isRendererInit && isInputInit && isFontInit; // Return bool && bool && bool ...to detect error
+}
+
+std::vector<std::vector<int>> Game::loadLevel(const std::string& filename)
+{
+	std::ifstream file(filename);
+	std::vector<std::vector<int>> level;
+	std::string line;
+
+	if (!file.is_open())
+	{
+		std::cerr << "Failed to open level file" << std::endl;
+		return level;
+	}
+
+	while (std::getline(file, line)) 
+	{
+		std::vector<int> row;
+		std::istringstream iss(line);
+		int value;
+		while (iss >> value) 
+		{
+			row.push_back(value);
+		}
+		level.push_back(row);
+	}
+
+	return level;
 }
 
 void Game::load()
@@ -67,6 +95,35 @@ void Game::load()
 
 
 	fps = new FPSActor();
+	fps-> setPosition(Vector3(0, 0, 550));
+
+	std::vector<std::vector<int>> level = loadLevel("level.txt");
+
+	const float cubeSize = 500.0f;
+	const float startX = -1250.0f;
+	const float startY = -1250.0f;
+
+	for (size_t y = 0; y < level.size(); ++y)
+	{
+		for (size_t x = 0; x < level[y].size(); ++x)
+		{
+			if (level[y][x] == 1)
+			{
+				CubeActor* cube = new CubeActor();
+				cube->setPosition(Vector3(startX + x * cubeSize, startY + y * cubeSize, 0.0f));
+				cube->setScale(cubeSize);
+			}
+			else if (level[y][x] == 2)
+			{
+				// mettre le spawn player
+			}
+			else if (level[y][x] == 3)
+			{
+				// mettre la fin du jeu
+			}
+			
+		}
+	}
 
 	// CubeActor* a = new CubeActor();
 	// a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
@@ -80,9 +137,9 @@ void Game::load()
 	// Setup floor
 	const float start = -1250.0f;
 	const float size = 550.0f;
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 15; i++)
 	{
-		for (int j = 0; j < 50; j++)
+		for (int j = 0; j < 15; j++)
 		{
 			PlaneActor* p = new PlaneActor();
 			p->setPosition(Vector3(start + i * size, start + j * size, -100.0f));

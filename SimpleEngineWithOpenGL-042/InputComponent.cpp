@@ -15,7 +15,7 @@ InputComponent::InputComponent(Actor* ownerP) :
 
 void InputComponent::processInput(const InputState& inputState)
 {
-	float forwardSpeed = 0.0f;
+	float forwardSpeed = 1000.0f;
 	if (inputState.keyboard.getKeyState(forwardKey) == ButtonState::Held)
 	{
 		forwardSpeed += maxForwardSpeed;
