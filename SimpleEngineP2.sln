@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleEngineP2", "SimpleEngineP2\SimpleEngineP2.vcxproj", "{9685D12F-BB32-4975-8BBE-1904511579B6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleEngineWithOpenGL-011", "SimpleEngineWithOpenGL-011\SimpleEngineWithOpenGL-011.vcxproj", "{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleEngineWithOpenGL-042", "SimpleEngineWithOpenGL-042\SimpleEngineWithOpenGL-042.vcxproj", "{F41549D2-ADBE-485A-83FD-898EC819D793}"
 EndProject
 Global
@@ -25,14 +23,6 @@ Global
 		{9685D12F-BB32-4975-8BBE-1904511579B6}.Release|x64.Build.0 = Release|x64
 		{9685D12F-BB32-4975-8BBE-1904511579B6}.Release|x86.ActiveCfg = Release|Win32
 		{9685D12F-BB32-4975-8BBE-1904511579B6}.Release|x86.Build.0 = Release|Win32
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Debug|x64.ActiveCfg = Debug|x64
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Debug|x64.Build.0 = Debug|x64
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Debug|x86.ActiveCfg = Debug|Win32
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Debug|x86.Build.0 = Debug|Win32
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Release|x64.ActiveCfg = Release|x64
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Release|x64.Build.0 = Release|x64
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Release|x86.ActiveCfg = Release|Win32
-		{EEC6D454-BECE-45A7-8C0E-676BD5DDD367}.Release|x86.Build.0 = Release|Win32
 		{F41549D2-ADBE-485A-83FD-898EC819D793}.Debug|x64.ActiveCfg = Debug|x64
 		{F41549D2-ADBE-485A-83FD-898EC819D793}.Debug|x64.Build.0 = Debug|x64
 		{F41549D2-ADBE-485A-83FD-898EC819D793}.Debug|x86.ActiveCfg = Debug|Win32
