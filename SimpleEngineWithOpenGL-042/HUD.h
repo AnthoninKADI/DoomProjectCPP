@@ -8,6 +8,7 @@ public:
 	~HUD();
 
 	void update(float dt) override;
+	void updateHP(float dt);
 	void draw(class Shader& shader) override;
 
 	void addTargetComponent(class TargetComponent* tc);
@@ -23,6 +24,12 @@ protected:
 	class Texture* radar;
 	class Texture* blipTex;
 	class Texture* radarArrow;
+
+	class Texture* healthBar;
+	class Texture* healthBar1;
+	class Texture* healthBar2;
+	class Texture* healthBar3;
+	
 
 	std::vector<class TargetComponent*> targetComponents;
 	bool isTargetingEnemy;

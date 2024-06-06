@@ -16,6 +16,9 @@ public:
 	void setFootstepSurface(float value);
 	void setVisible(bool isVisible);
 	void fixCollisions();
+	int getHP(){return hp;}
+	void setHP(int php);
+	void damage();
 
 private:
 	class MoveComponent* moveComponent;
@@ -25,6 +28,7 @@ private:
 	class Actor* FPSModel;
 	float lastFootstep;
 	class BoxComponent* boxComponent;
+	int hp = 3;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);

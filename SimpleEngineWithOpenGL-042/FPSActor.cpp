@@ -206,3 +206,13 @@ void FPSActor::fixCollisions()
 	setPosition(pos);
 	boxComponent->onUpdateWorldTransform();
 }
+
+void FPSActor::setHP(int php)
+{
+	hp = php;
+}
+
+void FPSActor::damage()
+{
+	setHP(hp-=1);
+}

@@ -82,6 +82,11 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Radar.png", "Radar");
 	Assets::loadTexture(renderer, "Res\\Textures\\Blip.png", "Blip");
 	Assets::loadTexture(renderer, "Res\\Textures\\RadarArrow.png", "RadarArrow");
+	
+	Assets::loadTexture(renderer, "Res\\Textures\\healthBar.png", "healthBar");
+	Assets::loadTexture(renderer, "Res\\Textures\\healthBar1.png", "healthBar1");
+	Assets::loadTexture(renderer, "Res\\Textures\\healthBar2.png", "healthBar2");
+	Assets::loadTexture(renderer, "Res\\Textures\\healthBar3.png", "healthBar3");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -92,10 +97,8 @@ void Game::load()
 
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
-
-
+	
 	fps = new FPSActor();
-	fps-> setPosition(Vector3(0, 0, 550));
 
 	std::vector<std::vector<int>> level = loadLevel("level.txt");
 	std::vector<std::vector<int>> level2 = loadLevel("level2.txt");
@@ -116,7 +119,7 @@ void Game::load()
 			}
 			else if (level[y][x] == 2)
 			{
-				// mettre le spawn player
+				fps->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 100.0f));
 			}
 			else if (level[y][x] == 3)
 			{
@@ -188,7 +191,6 @@ void Game::load()
 	Actor* crosshairActor = new Actor();
 	crosshairActor->setScale(Vector3(2.0f,2.0f,2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
-
 	
 	// TargetActor* t = new TargetActor();
 	// t->setPosition(Vector3(1450.0f, 0.0f, 100.0f));
