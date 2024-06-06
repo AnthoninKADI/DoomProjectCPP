@@ -141,7 +141,7 @@ void Game::load()
 
 	// CubeActor* a = new CubeActor();
 	// a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
-	// a->setScale(100.0f);
+	// a->setScale(Vector3(100.0f, 100.0f, 100.0f));
 	// Quaternion q(Vector3::unitY, -Maths::piOver2);
 	// q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
 	// a->setRotation(q);
@@ -176,11 +176,10 @@ void Game::load()
 	dir.direction = Vector3(0.0f, -0.707f, -0.707f);
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
-
-	// Create spheres with audio components playing different sounds
-	SphereActor* soundSphere = new SphereActor();
-	soundSphere->setPosition(Vector3(500.0f, -75.0f, 0.0f));
-	soundSphere->setScale(Vector3(1.0f, 1.0f, 1.0f));
+	
+	// SphereActor* soundSphere = new SphereActor();
+	// soundSphere->setPosition(Vector3(500.0f, -75.0f, 0.0f));
+	// soundSphere->setScale(Vector3(1.0f, 1.0f, 1.0f));
 
 
 	// HUD

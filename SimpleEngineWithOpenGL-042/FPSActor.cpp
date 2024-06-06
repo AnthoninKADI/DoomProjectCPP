@@ -188,7 +188,6 @@ void FPSActor::fixCollisions()
 		const AABB& planeBox = pa->getBox()->getWorldBox();
 		if(Collisions::intersect(playerBox, planeBox))
 		{
-			std::cout << "Collide" << std::endl;
 			resolveCollision(playerBox, planeBox, pos);
 		}
 	}
@@ -199,7 +198,6 @@ void FPSActor::fixCollisions()
 		const AABB& cubeBox = cube->getBox()->getWorldBox();
 		if (Collisions::intersect(playerBox, cubeBox))
 			{
-			std::cout << "Collide" << std::endl;
 			resolveCollision(playerBox, cubeBox, pos);
 		}
 	}
