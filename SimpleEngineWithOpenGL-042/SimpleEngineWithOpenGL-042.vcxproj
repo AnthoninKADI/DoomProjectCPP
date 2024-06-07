@@ -200,6 +200,7 @@
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="TargetActor.cpp" />
     <ClCompile Include="TargetComponent.cpp" />
+    <ClCompile Include="Teleporter.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIScreen.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="TargetActor.h" />
     <ClInclude Include="TargetComponent.h" />
+    <ClInclude Include="Teleporter.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIScreen.h" />

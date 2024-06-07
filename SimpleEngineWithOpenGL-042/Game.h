@@ -11,6 +11,7 @@
 #include "PlaneActor.h"
 #include "HUD.h"
 #include "Door.h"
+#include "Teleporter.h"
 
 using std::vector;
 
@@ -66,6 +67,7 @@ public:
 	vector<PlaneActor*>& getPlanes() { return planes; }
 	vector<CubeActor*>& getCubes() { return cubes; }
 	vector<Door*>& getDoors() { return doors; }
+	Teleporter* getTPs() { return teleporter; }
 	class FPSActor* getPlayer() { return fps; }
 
 private:
@@ -93,5 +95,6 @@ private:
 	vector<CubeActor*> cubes;
 	vector<Door*> doors;
 	vector<PlaneActor*> planes;
+	Teleporter* teleporter;
 };
 

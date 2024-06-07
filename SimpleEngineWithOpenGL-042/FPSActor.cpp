@@ -222,7 +222,16 @@ void FPSActor::fixCollisions()
 	// Need to set position and update box component
 	setPosition(pos);
 	boxComponent->onUpdateWorldTransform();
-}
+
+	const auto& teleporter = getGame().getTPs();
+	const AABB& TPBox = teleporter->getBox()->getWorldBox();
+		if (Collisions::intersect(playerBox, TPBox))
+		{
+			std::cout << "dude" << std::endl;
+			setPosition(Vector3(0.0f, 0.0f, 850.0f));
+		}
+	}
+
 
 void FPSActor::setHP(int php)
 {

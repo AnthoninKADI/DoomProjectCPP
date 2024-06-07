@@ -103,7 +103,7 @@ void Game::load()
 	std::vector<std::vector<int>> level = loadLevel("level.txt");
 	std::vector<std::vector<int>> level2 = loadLevel("level2.txt");
 
-	const Vector3 cubeSize = Vector3(500.0f, 500.0f, 500.0f);
+	const Vector3 cubeSize = Vector3(500.0f, 500.0f, 1000.0f);
 	const float startX = -1250.0f;
 	const float startY = -1250.0f;
 
@@ -131,17 +131,23 @@ void Game::load()
 				door->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
 				door->setScale(Vector3(200.0f, 500.0f, 1000.0f));
 			}
+			else if (level[y][x] == 5)
+			{
+				teleporter = new Teleporter();
+				teleporter->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+				teleporter->setScale(Vector3(50.0f, 350.0f, 450.0f));
+			}
 			
 		}
 
-		for (size_t y = 0; y < level.size(); ++y)
+		for (size_t y = 0; y < level2.size(); ++y)
 		{
-			for (size_t x = 0; x < level[y].size(); ++x)
+			for (size_t x = 0; x < level2[y].size(); ++x)
 			{
-				if (level[y][x] == 1)
+				if (level2[y][x] == 1)
 				{
 					CubeActor* cube = new CubeActor();
-					cube->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 550));
+					cube->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 1100.0f));
 					cube->setScale(Vector3(500.0f, 500.0f, 1000.0f));
 				}
 			}
@@ -176,6 +182,16 @@ void Game::load()
 		{
 			PlaneActor* p = new PlaneActor();
 			p->setPosition(Vector3(start + i * size, start + j * size, 550.0f));
+		}
+	}
+
+	// Setup floor 3
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			PlaneActor* p = new PlaneActor();
+			p->setPosition(Vector3(start + i * size, start + j * size, 1100.0f));
 		}
 	}
 	
