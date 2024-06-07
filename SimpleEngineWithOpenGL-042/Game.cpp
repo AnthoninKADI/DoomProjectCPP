@@ -125,6 +125,12 @@ void Game::load()
 			{
 				// mettre la fin du jeu
 			}
+			else if (level[y][x] == 4)
+			{
+				Door* door = new Door();
+				door->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+				door->setScale(Vector3(200.0f, 500.0f, 1000.0f));
+			}
 			
 		}
 
@@ -183,8 +189,7 @@ void Game::load()
 	// SphereActor* soundSphere = new SphereActor();
 	// soundSphere->setPosition(Vector3(500.0f, -75.0f, 0.0f));
 	// soundSphere->setScale(Vector3(1.0f, 1.0f, 1.0f));
-
-
+	
 	// HUD
 	hud = new HUD();
 	
@@ -192,14 +197,8 @@ void Game::load()
 	crosshairActor->setScale(Vector3(2.0f,2.0f,2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 	
-	// TargetActor* t = new TargetActor();
-	// t->setPosition(Vector3(1450.0f, 0.0f, 100.0f));
-	// t = new TargetActor();
-	// t->setPosition(Vector3(1450.0f, 0.0f, 400.0f));
-	// t = new TargetActor();
-	// t->setPosition(Vector3(1450.0f, -500.0f, 200.0f));
-	// t = new TargetActor();
-	// t->setPosition(Vector3(1450.0f, 500.0f, 200.0f));
+	 TargetActor* t = new TargetActor();
+	 t->setPosition(Vector3(1985.0f, 1700.0f, 200.0f));
 }
 
 void Game::processInput()
@@ -401,6 +400,11 @@ void Game::removePlane(PlaneActor* plane)
 void Game::addCubes(CubeActor* cube)
 {
 	cubes.emplace_back(cube);
+}
+
+void Game::addDoors(Door* door)
+{
+	doors.emplace_back(door);
 }
 
 void Game::removeCubes(CubeActor* cube)

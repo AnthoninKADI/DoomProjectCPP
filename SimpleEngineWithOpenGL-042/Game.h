@@ -10,6 +10,7 @@
 #include "PhysicsSystem.h"
 #include "PlaneActor.h"
 #include "HUD.h"
+#include "Door.h"
 
 using std::vector;
 
@@ -60,9 +61,11 @@ public:
 	void addPlane(class PlaneActor* plane);
 	void removePlane(class PlaneActor* plane);
 	void addCubes(class CubeActor* cube);
+	void addDoors(class Door* door);
 	void removeCubes(class CubeActor* cube);
 	vector<PlaneActor*>& getPlanes() { return planes; }
 	vector<CubeActor*>& getCubes() { return cubes; }
+	vector<Door*>& getDoors() { return doors; }
 	class FPSActor* getPlayer() { return fps; }
 
 private:
@@ -88,6 +91,7 @@ private:
 	class FPSActor* fps;
 	class SpriteComponent* crosshair;
 	vector<CubeActor*> cubes;
+	vector<Door*> doors;
 	vector<PlaneActor*> planes;
 };
 
