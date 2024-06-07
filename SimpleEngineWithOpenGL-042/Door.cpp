@@ -23,7 +23,8 @@ void Door::openDoor()
 {
     if(isOpen == true)
     {
-        setState(ActorState::Dead);
+        setPosition(Vector3(0.0f, 0.0f, -650.0f));
+        //setState(ActorState::Dead);
     }
 }
 

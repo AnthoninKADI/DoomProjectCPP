@@ -209,6 +209,16 @@ void FPSActor::fixCollisions()
 		}
 	}
 
+	const auto& doors = getGame().getDoors();
+	for(const auto& door : doors)
+	{
+		const AABB& DoorBox = door->getBox()->getWorldBox();
+		if (Collisions::intersect(playerBox, DoorBox))
+		{
+			resolveCollision(playerBox, DoorBox, pos);
+		}
+	}
+
 	// Need to set position and update box component
 	setPosition(pos);
 	boxComponent->onUpdateWorldTransform();
