@@ -15,7 +15,10 @@ HUD::HUD():
 	radar = &Assets::getTexture("Radar");
 	blipTex = &Assets::getTexture("Blip");
 	radarArrow = &Assets::getTexture("RadarArrow");
-	healthBar = &Assets::getTexture("HealthBar");
+	healthBar = &Assets::getTexture("healthBar");
+	healthBar1 = &Assets::getTexture("healthBar1");
+	healthBar2 = &Assets::getTexture("healthBar2");
+	healthBar3 = &Assets::getTexture("healthBar3");
 }
 
 HUD::~HUD()
@@ -27,26 +30,24 @@ void HUD::update(float dt)
 	UIScreen::update(dt);
 	updateCrosshair(dt);
 	updateRadar(dt);
+	updateHP(dt);
 }
 
 void HUD::updateHP(float dt)
 {
 	switch (Game::instance().getPlayer()->getHP())
 	{
-	case 4:
-		healthBar = &Assets::getTexture("HealthBar");
-		break;
 	case 3:
-		healthBar = &Assets::getTexture("HealthBar1");
+		healthBar = &Assets::getTexture("healthBar");
 		break;
 	case 2:
-		healthBar = &Assets::getTexture("HealthBar2");
+		healthBar = &Assets::getTexture("healthBar1");
 		break;
 	case 1:
-		healthBar = &Assets::getTexture("HealthBar3");
+		healthBar = &Assets::getTexture("healthBar2");
 		break;
 	default:
-		healthBar = &Assets::getTexture("HealthBar");
+		healthBar = &Assets::getTexture("healthBar3");
 		break;	
 	}
 }

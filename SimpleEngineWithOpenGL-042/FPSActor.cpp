@@ -10,6 +10,8 @@
 #include "BoxComponent.h"
 #include "Collisions.h"
 
+
+
 FPSActor::FPSActor() : 
 	Actor(), 
 	moveComponent(nullptr), 
@@ -110,6 +112,11 @@ void FPSActor::actorInput(const InputState& inputState)
 	if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
 	{
 		strafeSpeed += 1000.0f;
+	}
+	if (inputState.keyboard.getKeyState(SDL_SCANCODE_E) == ButtonState::Pressed)
+	{
+		damage();
+		std::cout << hp << std::endl;
 	}
 	moveComponent->setForwardSpeed(forwardSpeed);
 	moveComponent->setStrafeSpeed(strafeSpeed);
