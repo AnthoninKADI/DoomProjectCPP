@@ -222,15 +222,27 @@ void FPSActor::fixCollisions()
 	// Need to set position and update box component
 	setPosition(pos);
 	boxComponent->onUpdateWorldTransform();
-
+	
+	// TP collision
 	const auto& teleporter = getGame().getTPs();
 	const AABB& TPBox = teleporter->getBox()->getWorldBox();
 		if (Collisions::intersect(playerBox, TPBox))
 		{
-			std::cout << "dude" << std::endl;
-			setPosition(Vector3(0.0f, 0.0f, 850.0f));
+			std::cout << "Collision avec TP" << std::endl;
+			setPosition(Vector3(0.0f, 1750.0f, 850.0f));
+		}
+	
+
+	// End Game Collision
+	const auto& endGame = getGame().getEnd();
+	const AABB& EndBox = endGame->getBox()->getWorldBox();
+		if (Collisions::intersect(playerBox, EndBox))
+		{
+			std::cout << "Collision avec END" << std::endl;
 		}
 	}
+
+
 
 
 void FPSActor::setHP(int php)

@@ -158,6 +158,7 @@
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="DialogBox.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="FollowActor.cpp" />
     <ClCompile Include="FollowCameraComponent.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="DialogBox.h" />
     <ClInclude Include="Door.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="FollowActor.h" />
     <ClInclude Include="FollowCameraComponent.h" />
     <ClInclude Include="Font.h" />

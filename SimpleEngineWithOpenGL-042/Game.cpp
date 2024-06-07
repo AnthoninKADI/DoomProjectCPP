@@ -12,11 +12,10 @@
 #include "PlaneActor.h"
 
 #include "FPSActor.h"
-#include "FollowActor.h"
-#include "OrbitActor.h"
-#include "SplineActor.h"
 #include "TargetActor.h"
 #include "PauseScreen.h"
+#include "EndGame.h"
+#include "Teleporter.h"
 
 bool Game::initialize()
 {
@@ -87,6 +86,10 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar1.png", "healthBar1");
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar2.png", "healthBar2");
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar3.png", "healthBar3");
+	
+	Assets::loadTexture(renderer, "Res\\Textures\\EndGame.png", "EndGame");
+	Assets::loadTexture(renderer, "Res\\Textures\\Teleporter.png", "Teleporter");
+	Assets::loadTexture(renderer, "Res\\Textures\\Door.png", "Door");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
@@ -121,10 +124,6 @@ void Game::load()
 			{
 				fps->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 100.0f));
 			}
-			else if (level[y][x] == 3)
-			{
-				// mettre la fin du jeu
-			}
 			else if (level[y][x] == 4)
 			{
 				Door* door = new Door();
@@ -149,6 +148,12 @@ void Game::load()
 					CubeActor* cube = new CubeActor();
 					cube->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 1100.0f));
 					cube->setScale(Vector3(500.0f, 500.0f, 1000.0f));
+				}
+				else if (level2[y][x] == 3)
+				{
+					endGame = new EndGame();
+					endGame->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 850.0f));
+					endGame->setScale(Vector3(50.0f, 350.0f, 500.0f));
 				}
 			}
 		}	
