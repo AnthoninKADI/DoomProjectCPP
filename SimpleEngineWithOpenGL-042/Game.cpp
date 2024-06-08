@@ -103,6 +103,10 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\RacingCar.gpmesh", "Mesh_RacingCar");
 	Assets::loadMesh("Res\\Meshes\\Target.gpmesh", "Mesh_Target");
 
+	Assets::loadMesh("Res\\Meshes\\EndGame.gpmesh", "Mesh_EndGame");
+	Assets::loadMesh("Res\\Meshes\\Teleporter.gpmesh", "Mesh_Teleporter");
+	Assets::loadMesh("Res\\Meshes\\Door.gpmesh", "Mesh_Door");
+
 	Assets::loadFont("Res\\Fonts\\Carlito-Regular.ttf", "Carlito");
 	Assets::loadText("Res\\Localization\\English.gptext");
 	
