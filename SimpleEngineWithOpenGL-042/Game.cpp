@@ -94,6 +94,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\GameOver.png", "GameOver");
 	Assets::loadTexture(renderer, "Res\\Textures\\Finished.png", "Finished");
 	Assets::loadTexture(renderer, "Res\\Textures\\Empty.png", "Empty");
+	Assets::loadTexture(renderer, "Res\\Textures\\PressE.png", "PressE");
 
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");

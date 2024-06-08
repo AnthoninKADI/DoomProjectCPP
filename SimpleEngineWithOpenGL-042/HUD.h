@@ -34,6 +34,7 @@ protected:
 	class Texture* Empty;
 	class Texture* GameOver;
 	class Texture* Finished;
+	class Texture* PressE;
 	
 
 	std::vector<class TargetComponent*> targetComponents;

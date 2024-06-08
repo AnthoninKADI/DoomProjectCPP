@@ -24,6 +24,7 @@ HUD::HUD():
 	GameOver = &Assets::getTexture("GameOver");
 	Finished = &Assets::getTexture("Finished");
 	Empty = &Assets::getTexture("Empty");
+	PressE = &Assets::getTexture("PressE");
 }
 
 HUD::~HUD()
@@ -85,6 +86,7 @@ void HUD::draw(Shader& shader)
 		drawTexture(shader, blipTex, radarPosition + blip, 1.0f);
 	}
 	drawTexture(shader, radarArrow, radarPosition);
+	drawTexture(shader, PressE, Vector2(-210.0f, -350.0f), 0.4f);
 	if(!isDead)
 	{
 		drawTexture(shader, healthBar, Vector2(-410.0f, -345.0f), 0.5f);
