@@ -9,6 +9,7 @@ public:
 
 	void update(float dt) override;
 	void updateHP(float dt);
+	void updateCondition(float dt);
 	void draw(class Shader& shader) override;
 
 	void addTargetComponent(class TargetComponent* tc);
@@ -30,9 +31,14 @@ protected:
 	class Texture* healthBar2;
 	class Texture* healthBar3;
 	
+	class Texture* Empty;
+	class Texture* GameOver;
+	class Texture* Finished;
+	
 
 	std::vector<class TargetComponent*> targetComponents;
 	bool isTargetingEnemy;
+	bool isDead = false;
 	vector<Vector2> blips;
 	float radarRange;
 	float radarRadius;

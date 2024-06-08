@@ -118,6 +118,11 @@ void FPSActor::actorInput(const InputState& inputState)
 		damage();
 		std::cout << hp << std::endl;
 	}
+	if (inputState.keyboard.getKeyState(SDL_SCANCODE_P) == ButtonState::Pressed)
+	{
+		exit(0);
+	}
+
 	moveComponent->setForwardSpeed(forwardSpeed);
 	moveComponent->setStrafeSpeed(strafeSpeed);
 	// Mouse mouvement
@@ -173,12 +178,16 @@ void FPSActor::setFootstepSurface(float value)
 {
 	// Pause here because the way I setup the parameter in FMOD
 	// changing it will play a footstep
-
 }
 
 void FPSActor::setVisible(bool isVisible)
 {
 	meshComponent->setVisible(isVisible);
+}
+
+void FPSActor::setEnd(bool pendGame)
+{
+	endGame = pendGame;
 }
 
 void FPSActor::fixCollisions()
@@ -238,12 +247,9 @@ void FPSActor::fixCollisions()
 	const AABB& EndBox = endGame->getBox()->getWorldBox();
 		if (Collisions::intersect(playerBox, EndBox))
 		{
-			std::cout << "Collision avec END" << std::endl;
+			setEnd(true);
 		}
 	}
-
-
-
 
 void FPSActor::setHP(int php)
 {

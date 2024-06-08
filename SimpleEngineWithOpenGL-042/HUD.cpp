@@ -15,10 +15,15 @@ HUD::HUD():
 	radar = &Assets::getTexture("Radar");
 	blipTex = &Assets::getTexture("Blip");
 	radarArrow = &Assets::getTexture("RadarArrow");
+	
 	healthBar = &Assets::getTexture("healthBar");
 	healthBar1 = &Assets::getTexture("healthBar1");
 	healthBar2 = &Assets::getTexture("healthBar2");
 	healthBar3 = &Assets::getTexture("healthBar3");
+	
+	GameOver = &Assets::getTexture("GameOver");
+	Finished = &Assets::getTexture("Finished");
+	Empty = &Assets::getTexture("Empty");
 }
 
 HUD::~HUD()
@@ -31,6 +36,7 @@ void HUD::update(float dt)
 	updateCrosshair(dt);
 	updateRadar(dt);
 	updateHP(dt);
+	updateCondition(dt);
 }
 
 void HUD::updateHP(float dt)
@@ -47,8 +53,23 @@ void HUD::updateHP(float dt)
 		healthBar = &Assets::getTexture("healthBar2");
 		break;
 	default:
-		healthBar = &Assets::getTexture("healthBar3");
+		healthBar = &Assets::getTexture("GameOver");
+		isDead = true;
 		break;	
+	}
+
+	
+}
+
+void HUD::updateCondition(float dt)
+{
+	if (Game::instance().getPlayer()->getEnd() == true)
+	{
+		Finished = &Assets::getTexture("Finished");
+	}
+	else
+	{
+		Finished = &Assets::getTexture("Empty");
 	}
 }
 
@@ -64,7 +85,15 @@ void HUD::draw(Shader& shader)
 		drawTexture(shader, blipTex, radarPosition + blip, 1.0f);
 	}
 	drawTexture(shader, radarArrow, radarPosition);
-	drawTexture(shader, healthBar, Vector2(-410.0f, -345.0f), 0.5f);
+	if(!isDead)
+	{
+		drawTexture(shader, healthBar, Vector2(-410.0f, -345.0f), 0.5f);
+	}
+	else
+	{
+		drawTexture(shader, healthBar, Vector2(0.0f, 0.0f), 0.95f);
+	}
+	drawTexture(shader, Finished, Vector2(0.0f, 0.0f), 0.95f);
 }
 
 void HUD::addTargetComponent(TargetComponent* tc)

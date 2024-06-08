@@ -91,6 +91,10 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\Teleporter.png", "Teleporter");
 	Assets::loadTexture(renderer, "Res\\Textures\\Door.png", "Door");
 
+	Assets::loadTexture(renderer, "Res\\Textures\\GameOver.png", "GameOver");
+	Assets::loadTexture(renderer, "Res\\Textures\\Finished.png", "Finished");
+	Assets::loadTexture(renderer, "Res\\Textures\\Empty.png", "Empty");
+
 	Assets::loadMesh("Res\\Meshes\\Cube.gpmesh", "Mesh_Cube");
 	Assets::loadMesh("Res\\Meshes\\Plane.gpmesh", "Mesh_Plane");
 	Assets::loadMesh("Res\\Meshes\\Sphere.gpmesh", "Mesh_Sphere");
@@ -159,15 +163,7 @@ void Game::load()
 		}	
 	}
 
-	// CubeActor* a = new CubeActor();
-	// a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
-	// a->setScale(Vector3(100.0f, 100.0f, 100.0f));
-	// Quaternion q(Vector3::unitY, -Maths::piOver2);
-	// q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
-	// a->setRotation(q);
-
 	// Floor and walls
-
 	// Setup floor
 	const float start = -1250.0f;
 	const float size = 550.0f;
@@ -207,10 +203,6 @@ void Game::load()
 	dir.diffuseColor = Vector3(0.78f, 0.88f, 1.0f);
 	dir.specColor = Vector3(0.8f, 0.8f, 0.8f);
 	
-	// SphereActor* soundSphere = new SphereActor();
-	// soundSphere->setPosition(Vector3(500.0f, -75.0f, 0.0f));
-	// soundSphere->setScale(Vector3(1.0f, 1.0f, 1.0f));
-	
 	// HUD
 	hud = new HUD();
 	
@@ -218,8 +210,8 @@ void Game::load()
 	crosshairActor->setScale(Vector3(2.0f,2.0f,2.0f));
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 	
-	 TargetActor* t = new TargetActor();
-	 t->setPosition(Vector3(1985.0f, 1700.0f, 200.0f));
+	TargetActor* t = new TargetActor();
+	t->setPosition(Vector3(1985.0f, 1700.0f, 200.0f));
 }
 
 void Game::processInput()
@@ -347,8 +339,6 @@ void Game::loop()
 
 void Game::unload()
 {
-	// Delete actors
-	// Because ~Actor calls RemoveActor, have to use a different style loop
 	while (!actors.empty())
 	{
 		delete actors.back();
