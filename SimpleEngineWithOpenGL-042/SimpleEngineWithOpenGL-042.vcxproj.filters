@@ -67,15 +67,6 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="AudioComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundEvent.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="ControllerState.cpp">
       <Filter>Systems\Input</Filter>
     </ClCompile>
@@ -178,6 +169,9 @@
     <ClCompile Include="TargetComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="EndGame.cpp" />
+    <ClCompile Include="Teleporter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -253,15 +247,6 @@
     <ClInclude Include="Assets.h" />
     <ClInclude Include="DirectionalLight.h">
       <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundEvent.h">
-      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="ControllerState.h">
       <Filter>Systems\Input</Filter>
@@ -368,6 +353,9 @@
     <ClInclude Include="TargetComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="EndGame.h" />
+    <ClInclude Include="Teleporter.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
