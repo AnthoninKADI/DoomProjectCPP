@@ -11,8 +11,11 @@
 #include "PlaneActor.h"
 #include "HUD.h"
 #include "Door.h"
+#include "KeyDoor.h"
 #include "Teleporter.h"
 #include "EndGame.h"
+#include "Key.h"
+#include "KeyDoor.h"
 
 using std::vector;
 
@@ -64,12 +67,15 @@ public:
 	void removePlane(class PlaneActor* plane);
 	void addCubes(class CubeActor* cube);
 	void addDoors(class Door* door);
+	void addKeyDoors(class KeyDoor* keydoor);
 	void removeCubes(class CubeActor* cube);
 	vector<PlaneActor*>& getPlanes() { return planes; }
 	vector<CubeActor*>& getCubes() { return cubes; }
 	vector<Door*>& getDoors() { return doors; }
+	vector<KeyDoor*>& getKeyDoors() { return keyDoors; }
 	Teleporter* getTPs() { return teleporter; }
 	EndGame* getEnd() { return endGame; }
+	Key* getKey() { return key; }
 	class FPSActor* getPlayer() { return fps; }
 
 private:
@@ -96,8 +102,10 @@ private:
 	class SpriteComponent* crosshair;
 	vector<CubeActor*> cubes;
 	vector<Door*> doors;
+	vector<KeyDoor*> keyDoors;
 	vector<PlaneActor*> planes;
 	Teleporter* teleporter;
 	EndGame* endGame;
+	Key* key;
 };
 

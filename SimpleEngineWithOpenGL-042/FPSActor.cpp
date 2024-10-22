@@ -9,6 +9,7 @@
 #include "BallActor.h"
 #include "BoxComponent.h"
 #include "Collisions.h"
+#include "KeyDoor.h"
 
 
 
@@ -190,6 +191,11 @@ void FPSActor::setEnd(bool pendGame)
 	endGame = pendGame;
 }
 
+void FPSActor::setKey(bool pkeyTaken)
+{
+	keyTaken = pkeyTaken;
+}
+
 void FPSActor::fixCollisions()
 {
 	// Need to recompute world transform to update world box
@@ -249,7 +255,17 @@ void FPSActor::fixCollisions()
 		{
 			setEnd(true);
 		}
+		
+	// Key Collision
+	const auto& key = getGame().getKey();
+	const AABB& keyBox = key->getBox()->getWorldBox();
+		if (Collisions::intersect(playerBox, keyBox))
+		{
+			setKey(true);
+			KeyDoor::isKeyOpen = true;
+		}
 	}
+
 
 void FPSActor::setHP(int php)
 {

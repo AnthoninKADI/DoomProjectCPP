@@ -16,6 +16,7 @@
 #include "PauseScreen.h"
 #include "EndGame.h"
 #include "Teleporter.h"
+#include "KeyDoor.h"
 
 bool Game::initialize()
 {
@@ -119,6 +120,7 @@ void Game::load()
 	const float startX = -1250.0f;
 	const float startY = -1250.0f;
 
+
 	for (size_t y = 0; y < level.size(); ++y)
 	{
 		for (size_t x = 0; x < level[y].size(); ++x)
@@ -145,6 +147,19 @@ void Game::load()
 				teleporter->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
 				teleporter->setScale(Vector3(50.0f, 350.0f, 450.0f));
 			}
+			else if (level[y][x] == 6)
+			{
+				KeyDoor* keyDoor = new KeyDoor();
+				keyDoor->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+				keyDoor->setScale(Vector3(200.0f, 500.0f, 1000.0f));	
+			}
+			else if (level[y][x] == 7)
+			{
+				Key* k = new Key();
+				k->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+				k->setScale(Vector3(50.0f, 350.0f, 500.0f));
+			}
+
 			
 		}
 
@@ -163,6 +178,18 @@ void Game::load()
 					endGame = new EndGame();
 					endGame->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 850.0f));
 					endGame->setScale(Vector3(50.0f, 350.0f, 500.0f));
+				}
+				else if (level[y][x] == 6)
+				{
+					KeyDoor* keyDoor = new KeyDoor();
+					keyDoor->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+					keyDoor->setScale(Vector3(200.0f, 500.0f, 1000.0f));
+				}
+				else if (level[y][x] == 7)
+				{
+					Key* k = new Key();
+					k->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
+					k->setScale(Vector3(50.0f, 350.0f, 500.0f));
 				}
 			}
 		}	
@@ -421,6 +448,11 @@ void Game::addCubes(CubeActor* cube)
 void Game::addDoors(Door* door)
 {
 	doors.emplace_back(door);
+}
+
+void Game::addKeyDoors(KeyDoor* keydoor)
+{
+	keyDoors.emplace_back(keydoor);
 }
 
 void Game::removeCubes(CubeActor* cube)

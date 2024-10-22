@@ -172,6 +172,8 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Teleporter.cpp" />
+    <ClCompile Include="KeyDoor.cpp" />
+    <ClCompile Include="Key.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -356,6 +358,8 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="EndGame.h" />
     <ClInclude Include="Teleporter.h" />
+    <ClInclude Include="KeyDoor.h" />
+    <ClInclude Include="Key.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

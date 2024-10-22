@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "Vector3.h"
 #include "AABB.h"
+#include "KeyDoor.h"
 
 class FPSActor : public Actor
 {
@@ -16,13 +17,15 @@ public:
 	void setFootstepSurface(float value);
 	void setVisible(bool isVisible);
 	void setEnd(bool pendGame);
+	void setKey(bool pkeyTaken);
 	void fixCollisions();
 	int getHP(){return hp;}
 	bool getEnd(){return endGame;}
+	bool getKey(){return keyTaken;}
 
 	void setHP(int php);
 	void damage();
-
+	
 private:
 	class MoveComponent* moveComponent;
 	class AudioComponent* audioComponent;
@@ -33,6 +36,7 @@ private:
 	class BoxComponent* boxComponent;
 	int hp = 3;
 	bool endGame = false;
+	bool keyTaken = false;
 };
 
 const Vector3 MODEL_OFFSET = Vector3(10.0f, 10.0f, -10.0f);
