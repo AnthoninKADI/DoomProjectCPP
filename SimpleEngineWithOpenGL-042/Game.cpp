@@ -143,7 +143,7 @@ void Game::load()
 			{
 				teleporter = new Teleporter();
 				teleporter->setPosition(Vector3(startX + x * cubeSize.x, startY + y * cubeSize.y, 0.0f));
-				teleporter->setScale(Vector3(50.0f, 350.0f, 450.0f));
+				teleporter->setScale(Vector3(50.0f, 350.0f, 650.0f));
 			}
 			
 		}
