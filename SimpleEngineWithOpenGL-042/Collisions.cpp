@@ -129,7 +129,7 @@ bool Collisions::intersect(const LineSegment& l, const AABB& b, float& outT, Vec
 		}
 	}
 
-	//None of the intersections are within bounds of box
+	//None of the intersections are within bounds of box.
 	return false;
 }
 
