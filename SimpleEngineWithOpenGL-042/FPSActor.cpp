@@ -175,7 +175,7 @@ void FPSActor::shoot()
 	//ball->setPosition(start * dir * 20.0f);
 	//ball->setPosition(Vector3{100, 100, 0}); // Faire en sorte que le tire suive le player
 	
-	Vector3 offset(0.0f, 0.0f, -50.0f);
+	Vector3 offset(0.0f, 0.0f, -60.0f);
 	ball->setPosition(start + offset);
 	
 	// Rotate the ball to face new direction
