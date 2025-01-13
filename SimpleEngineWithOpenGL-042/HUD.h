@@ -30,6 +30,7 @@ protected:
 	class Texture* healthBar1;
 	class Texture* healthBar2;
 	class Texture* healthBar3;
+	class Texture* cockpit;
 	
 	class Texture* Empty;
 	class Texture* GameOver;

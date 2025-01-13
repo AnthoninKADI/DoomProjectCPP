@@ -28,7 +28,7 @@ FPSActor::FPSActor() :
 	FPSModel = new Actor();
 	FPSModel->setScale(Vector3(0.75f, 0.75f, 0.75f));
 	meshComponent = new MeshComponent(FPSModel);
-	meshComponent->setMesh(Assets::getMesh("Mesh_Rifle"));
+	//meshComponent->setMesh(Assets::getMesh("Mesh_Rifle"));
 
 	boxComponent = new BoxComponent(this);
 	AABB collision(Vector3(-25.0f, -25.0f, -87.5f), Vector3(25.0f, 25.0f, 87.5f));
@@ -158,17 +158,26 @@ void FPSActor::shoot()
 {
 	// Get start point (in center of screen on near plane)
 	Vector3 screenPoint(0.0f, 0.0f, 0.0f);
-	Vector3 start = getGame().getRenderer().unproject(screenPoint);
+	//Vector3 start = getGame().getRenderer().unproject(screenPoint);
+	Vector3 start = getPosition();
 	// Get end point (in center of screen, between near and far)
 	screenPoint.z = 0.9f;
-	Vector3 end = getGame().getRenderer().unproject(screenPoint);
+	Vector3 end = getGame().getRenderer().unproject(Vector3{0,0,0.9f});
 	// Get direction vector
-	Vector3 dir = end - start;
+	//Vector3 dir = end - start;
+	Vector3 dir = getForward(); 
 	dir.normalize();
+	
 	// Spawn a ball
 	BallActor* ball = new BallActor();
 	ball->setPlayer(this);
-	ball->setPosition(start + dir * 20.0f);
+	
+	//ball->setPosition(start * dir * 20.0f);
+	//ball->setPosition(Vector3{100, 100, 0}); // Faire en sorte que le tire suive le player
+	
+	Vector3 offset(0.0f, 0.0f, -50.0f);
+	ball->setPosition(start + offset);
+	
 	// Rotate the ball to face new direction
 	ball->rotateToNewForward(dir);
 	// Play shooting sound
@@ -182,7 +191,7 @@ void FPSActor::setFootstepSurface(float value)
 
 void FPSActor::setVisible(bool isVisible)
 {
-	meshComponent->setVisible(isVisible);
+	//meshComponent->setVisible(isVisible);
 }
 
 void FPSActor::setEnd(bool pendGame)

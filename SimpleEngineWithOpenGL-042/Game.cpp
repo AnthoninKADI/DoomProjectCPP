@@ -86,6 +86,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar1.png", "healthBar1");
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar2.png", "healthBar2");
 	Assets::loadTexture(renderer, "Res\\Textures\\healthBar3.png", "healthBar3");
+	Assets::loadTexture(renderer, "Res\\Textures\\Cockpit.png", "cockpit");
 	
 	Assets::loadTexture(renderer, "Res\\Textures\\EndGame.png", "EndGame");
 	Assets::loadTexture(renderer, "Res\\Textures\\Teleporter.png", "Teleporter");
@@ -216,7 +217,7 @@ void Game::load()
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 	
 	TargetActor* t = new TargetActor();
-	t->setPosition(Vector3(1985.0f, 1700.0f, 200.0f));
+	t->setPosition(Vector3(5785.0f, 3350.0f, 200.0f));
 }
 
 void Game::processInput()

@@ -20,6 +20,7 @@ HUD::HUD():
 	healthBar1 = &Assets::getTexture("healthBar1");
 	healthBar2 = &Assets::getTexture("healthBar2");
 	healthBar3 = &Assets::getTexture("healthBar3");
+	cockpit = &Assets::getTexture("cockpit");
 	
 	GameOver = &Assets::getTexture("GameOver");
 	Finished = &Assets::getTexture("Finished");
@@ -78,23 +79,27 @@ void HUD::draw(Shader& shader)
 {
 	Texture* cross = isTargetingEnemy ? crosshairEnemy : crosshair;
 	drawTexture(shader, cross, Vector2::zero, 2.0f);
+	drawTexture(shader, cockpit, Vector2(0.0f, -28.0f), 1.0f);
 
-	const Vector2 radarPosition{ -390.0f, 275.0f };
-	drawTexture(shader, radar, radarPosition, 1.0f);
-	for (Vector2& blip : blips)
-	{
-		drawTexture(shader, blipTex, radarPosition + blip, 1.0f);
-	}
-	drawTexture(shader, radarArrow, radarPosition);
-	drawTexture(shader, PressE, Vector2(-210.0f, -350.0f), 0.4f);
-	if(!isDead)
-	{
-		drawTexture(shader, healthBar, Vector2(-410.0f, -345.0f), 0.5f);
-	}
-	else
-	{
-		drawTexture(shader, healthBar, Vector2(0.0f, 0.0f), 0.95f);
-	}
+	// Radar Affichage
+	// const Vector2 radarPosition{ -390.0f, 275.0f };
+	// drawTexture(shader, radar, radarPosition, 1.0f);
+	// for (Vector2& blip : blips)
+	// {
+	// 	drawTexture(shader, blipTex, radarPosition + blip, 1.0f);
+	// }
+	// drawTexture(shader, radarArrow, radarPosition);
+
+	// Healthbar Affichage
+	// drawTexture(shader, PressE, Vector2(-210.0f, -350.0f), 0.4f);
+	// if(!isDead)
+	// {
+	// 	drawTexture(shader, healthBar, Vector2(-410.0f, -345.0f), 0.5f);
+	// }
+	// else
+	// {
+	// 	drawTexture(shader, healthBar, Vector2(0.0f, 0.0f), 0.95f);
+	// }
 	drawTexture(shader, Finished, Vector2(0.0f, 0.0f), 0.95f);
 }
 
