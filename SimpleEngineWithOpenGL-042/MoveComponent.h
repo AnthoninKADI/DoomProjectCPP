@@ -1,27 +1,21 @@
 #pragma once
 #include "Component.h"
+#include "Maths.h"
+
 class MoveComponent : public Component
 {
 public:
-	MoveComponent(Actor* ownerP, int updateOrder = 10); // By default, update before other components
-	MoveComponent() = delete;
-	MoveComponent(const MoveComponent&) = delete;
-	MoveComponent& operator=(const MoveComponent&) = delete;
-
-	float getForwardSpeed() const { return forwardSpeed; }
-	float getAngularSpeed() const { return angularSpeed; }
-	float getStrafeSpeed() const { return strafeSpeed; }
-
-	void setForwardSpeed(float forwardSpeedP);
-	void setAngularSpeed(float angularSpeedP);
-	void setStrafeSpeed(float strafeSpeedP);
+	MoveComponent(class Actor* ownerP, int updateOrder = 10);
 
 	void update(float dt) override;
 
+	void setForwardSpeed(float speed);
+	void setAngularSpeed(float speed);
+
+	// Ajout de getForwardSpeed
+	float getForwardSpeed() const { return forwardSpeed; }
 
 private:
-	float forwardSpeed;
-	float angularSpeed;
-	float strafeSpeed;
+	float forwardSpeed;   
+	float angularSpeed;   
 };
-

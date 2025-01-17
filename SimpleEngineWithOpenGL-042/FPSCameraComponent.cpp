@@ -22,6 +22,8 @@ void FPSCameraComponent::update(float dt)
 	Vector3 up = Vector3::transform(Vector3::unitZ, q);
 	Matrix4 view = Matrix4::createLookAt(cameraPosition, target, up);
 	setViewMatrix(view);
+
+	Vector3 forward = owner.getForward();
 }
 
 void FPSCameraComponent::setPitchSpeed(float speed)
@@ -33,3 +35,4 @@ void FPSCameraComponent::setMaxPitch(float pitch)
 {
 	maxPitch = pitch;
 }
+

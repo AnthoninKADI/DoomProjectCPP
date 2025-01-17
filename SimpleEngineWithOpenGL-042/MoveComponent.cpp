@@ -1,44 +1,42 @@
 #include "MoveComponent.h"
-#include "Maths.h"
 #include "Actor.h"
-#include "Window.h"
+#include "Maths.h"
 
-MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP)
-	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f), strafeSpeed(0.0f)
+MoveComponent::MoveComponent(Actor* ownerP, int updateOrder) :
+	Component(ownerP, updateOrder),
+	angularSpeed(0.0f),
+	forwardSpeed(0.0f)
 {
-
 }
 
-void MoveComponent::setForwardSpeed(float forwardSpeedP)
+void MoveComponent::update(float deltaTime)
 {
-	forwardSpeed = forwardSpeedP;
-}
+	if (!Maths::nearZero(forwardSpeed))
+	{
+		// Calcul de la nouvelle position
+		Vector3 pos = owner.getPosition();
+		Vector3 forward = owner.getForward();
+		pos += forward * forwardSpeed * deltaTime;
+		owner.setPosition(pos);
+	}
 
-void MoveComponent::setAngularSpeed(float angularSpeedP)
-{
-	angularSpeed = angularSpeedP;
-}
-
-void MoveComponent::setStrafeSpeed(float strafeSpeedP)
-{
-	strafeSpeed = strafeSpeedP;
-}
-
-void MoveComponent::update(float dt)
-{
 	if (!Maths::nearZero(angularSpeed))
 	{
-		Quaternion newRotation = owner.getRotation();
-		float angle = angularSpeed * dt;
-		Quaternion increment(Vector3::unitZ, angle);
-		newRotation = Quaternion::concatenate(newRotation, increment);
-		owner.setRotation(newRotation);
+		// Calcul de la nouvelle rotation
+		Quaternion rot = owner.getRotation();
+		float angle = angularSpeed * deltaTime;
+		Quaternion inc(Vector3::unitZ, angle);
+		rot = Quaternion::concatenate(rot, inc);
+		owner.setRotation(rot);
 	}
-	if (!Maths::nearZero(forwardSpeed) || !Maths::nearZero(strafeSpeed))
-	{
-		Vector3 newPosition = owner.getPosition();
-		newPosition += owner.getForward() * forwardSpeed * dt;
-		newPosition += owner.getRight() * strafeSpeed * dt;
-		owner.setPosition(newPosition);
-	}
+}
+
+void MoveComponent::setForwardSpeed(float speed)
+{
+	forwardSpeed = speed;
+}
+
+void MoveComponent::setAngularSpeed(float speed)
+{
+	angularSpeed = speed;
 }

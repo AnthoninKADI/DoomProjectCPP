@@ -1,25 +1,19 @@
 #pragma once
 #include "MoveComponent.h"
-#include <SDL_stdinc.h>
-#include <SDL_scancode.h>
+#include <SDL_scancode.h> // Ajout pour SDL_Scancode
 
 class InputComponent : public MoveComponent
 {
 public:
-	InputComponent(Actor* ownerP);
-	InputComponent() = delete;
-	InputComponent(const InputComponent&) = delete;
-	InputComponent& operator=(const InputComponent&) = delete;
+	InputComponent(class Actor* ownerP);
 
-	void processInput(const struct InputState& inputState);
+	void processInput(const struct InputState& inputState) override;
 
-	void setMaxForwardSpeed(float maxForwardSpeedP);
-	void setMaxAngularSpeed(float maxAngularSpeedP);
-	void setForwardKey(SDL_Scancode key);
-	void setBackKey(SDL_Scancode key);
-	void setClockwiseKey(SDL_Scancode key);
-	void setCounterClockwiseKey(SDL_Scancode key);
-
+	// Définit les clés pour le contrôle
+	void setForwardKey(SDL_Scancode key) { forwardKey = key; }
+	void setBackKey(SDL_Scancode key) { backKey = key; }
+	void setClockwiseKey(SDL_Scancode key) { clockwiseKey = key; }
+	void setCounterClockwiseKey(SDL_Scancode key) { counterClockwiseKey = key; }
 
 private:
 	float maxForwardSpeed;
@@ -30,4 +24,3 @@ private:
 	SDL_Scancode clockwiseKey;
 	SDL_Scancode counterClockwiseKey;
 };
-
