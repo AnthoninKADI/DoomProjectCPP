@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Maths.h"
+#include "Vector3.h"
 
 class MoveComponent : public Component
 {
@@ -12,10 +13,11 @@ public:
 	void setForwardSpeed(float speed);
 	void setAngularSpeed(float speed);
 
-	// Ajout de getForwardSpeed
+	void setForwardDirection(const Vector3& direction);
 	float getForwardSpeed() const { return forwardSpeed; }
 
 private:
 	float forwardSpeed;   
-	float angularSpeed;   
+	float angularSpeed;
+	Vector3 forwardDirection;
 };

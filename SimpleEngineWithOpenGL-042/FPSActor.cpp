@@ -76,7 +76,7 @@ void FPSActor::updateActor(float dt)
         lastFootstep = 0.5f;
     }
 
-    // Update position and rotation of model relatively to position
+    // Update position and rotation of the FPS model relatively to the player position
     Vector3 modelPosition = getPosition();
     modelPosition += getForward() * MODEL_OFFSET.x;
     modelPosition += getRight() * MODEL_OFFSET.y;
@@ -107,11 +107,11 @@ void FPSActor::actorInput(const InputState& inputState)
     // Rotation left and right
     if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
     {
-        angularSpeed -= Maths::pi; 
+        angularSpeed -= Maths::pi;
     }
     if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
     {
-        angularSpeed += Maths::pi; 
+        angularSpeed += Maths::pi;
     }
 
     moveComponent->setForwardSpeed(forwardSpeed);
@@ -139,6 +139,13 @@ void FPSActor::actorInput(const InputState& inputState)
         pitchSpeed *= maxPitchSpeed;
     }
     cameraComponent->setPitchSpeed(pitchSpeed);
+
+    // Update forward direction for flying movement
+    Vector3 fullDirection = getForward();
+    Quaternion pitchRotation(getRight(), cameraComponent->getPitch());
+    fullDirection = Vector3::transform(fullDirection, pitchRotation);
+    fullDirection.normalize();
+    moveComponent->setForwardDirection(fullDirection);
 
     // Shoot
     if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)

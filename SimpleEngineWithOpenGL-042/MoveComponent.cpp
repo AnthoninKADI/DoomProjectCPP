@@ -13,21 +13,18 @@ void MoveComponent::update(float deltaTime)
 {
 	if (!Maths::nearZero(forwardSpeed))
 	{
-		// Calcul de la nouvelle position
-		Vector3 pos = owner.getPosition();
-		Vector3 forward = owner.getForward();
-		pos += forward * forwardSpeed * deltaTime;
-		owner.setPosition(pos);
+		Vector3 position = owner.getPosition();
+		position += forwardDirection * forwardSpeed * deltaTime;
+		owner.setPosition(position);
 	}
 
 	if (!Maths::nearZero(angularSpeed))
 	{
-		// Calcul de la nouvelle rotation
-		Quaternion rot = owner.getRotation();
+		Quaternion rotation = owner.getRotation();
 		float angle = angularSpeed * deltaTime;
-		Quaternion inc(Vector3::unitZ, angle);
-		rot = Quaternion::concatenate(rot, inc);
-		owner.setRotation(rot);
+		Quaternion incrementalRotation(Vector3::unitZ, angle);
+		rotation = Quaternion::concatenate(rotation, incrementalRotation);
+		owner.setRotation(rotation);
 	}
 }
 
@@ -39,4 +36,9 @@ void MoveComponent::setForwardSpeed(float speed)
 void MoveComponent::setAngularSpeed(float speed)
 {
 	angularSpeed = speed;
+}
+
+void MoveComponent::setForwardDirection(const Vector3& direction)
+{
+	forwardDirection = direction;
 }
