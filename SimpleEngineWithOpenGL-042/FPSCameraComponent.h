@@ -13,6 +13,7 @@ public:
 	float getPitchSpeed() const { return pitchSpeed; }
 	float getMaxPitch() const { return maxPitch; }
 
+	void setPitch(float pitchValue);
 	void setPitchSpeed(float speed);
 	void setMaxPitch(float pitch);
 	Vector3 getForward() const;

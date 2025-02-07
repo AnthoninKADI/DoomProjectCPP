@@ -70,6 +70,15 @@ void FPSActor::updateActor(float dt)
 {
     Actor::updateActor(dt);
 
+    if (!Maths::nearZero(moveComponent->getAngularSpeed()))
+    {
+        Quaternion rotation = getRotation();
+        float angle = moveComponent->getAngularSpeed() * dt;  // Calcul de l'angle en fonction du deltaTime
+        Quaternion incrementalRotation(Vector3::unitY, angle);  // Rotation autour de l'axe Y (vertical)
+        rotation = Quaternion::concatenate(rotation, incrementalRotation);
+        setRotation(rotation);
+    }
+
     // Play the footstep if we're moving and haven't recently
     lastFootstep -= dt;
     if (!Maths::nearZero(moveComponent->getForwardSpeed()) && lastFootstep <= 0.0f)
@@ -113,6 +122,11 @@ void FPSActor::actorInput(const InputState& inputState)
     if (inputState.keyboard.getKeyValue(SDL_SCANCODE_D))
     {
         angularSpeed += Maths::pi;
+    }
+    
+    if (inputState.keyboard.getKeyValue(SDL_SCANCODE_E))  
+    {
+        cameraComponent->setPitch(0.0f);
     }
 
     moveComponent->setForwardSpeed(forwardSpeed);
@@ -167,9 +181,9 @@ void FPSActor::shoot()
     ball->setPosition(start + offset);
     ball->rotateToNewForward(dir);
 
-    // Applique la vitesse à la balle dans la direction où tu regardes
-    ball->getMoveComponent()->setForwardDirection(dir);  // Utilise la direction de la caméra pour le mouvement
-    ball->getMoveComponent()->setForwardSpeed(2000.0f);  // Applique la vitesse définie
+
+    ball->getMoveComponent()->setForwardDirection(dir);  
+    ball->getMoveComponent()->setForwardSpeed(2000.0f);  
 }
 
 void FPSActor::setFootstepSurface(float value) {}

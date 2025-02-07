@@ -14,7 +14,9 @@ void FPSCameraComponent::update(float dt)
 
 	Vector3 cameraPosition = owner.getPosition();
 	pitch += pitchSpeed * dt;
-	pitch = Maths::clamp(pitch, -maxPitch, maxPitch);
+	
+	//pitch = Maths::clamp(pitch, -maxPitch, maxPitch);
+	
 	Quaternion q { owner.getRight(), pitch };
 	Vector3 viewForward = Vector3::transform(owner.getForward(), q);
 
@@ -38,6 +40,11 @@ void FPSCameraComponent::setMaxPitch(float pitch)
 
 Vector3 FPSCameraComponent::getForward() const
 {
-	return Vector3::transform(owner.getForward(), Quaternion(owner.getRight(), pitch));  // Ou retourne la direction déjà calculée
+	return Vector3::transform(owner.getForward(), Quaternion(owner.getRight(), pitch));  
+}
+
+void FPSCameraComponent::setPitch(float pitchValue)
+{
+	pitch = pitchValue;
 }
 

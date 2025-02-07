@@ -15,6 +15,7 @@ public:
 
 	void setForwardDirection(const Vector3& direction);
 	float getForwardSpeed() const { return forwardSpeed; }
+	float getAngularSpeed() const { return angularSpeed; }
 
 private:
 	float forwardSpeed;   

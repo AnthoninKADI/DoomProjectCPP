@@ -23,6 +23,7 @@ public:
 	void setHP(int php);
 	void damage();
 
+
 private:
 	class MoveComponent* moveComponent;
 	class AudioComponent* audioComponent;
