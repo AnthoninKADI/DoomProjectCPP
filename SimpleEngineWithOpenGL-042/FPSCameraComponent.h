@@ -15,6 +15,7 @@ public:
 
 	void setPitchSpeed(float speed);
 	void setMaxPitch(float pitch);
+	Vector3 getForward() const;
 
 private:
 	// Rotation/sec speed of pitch

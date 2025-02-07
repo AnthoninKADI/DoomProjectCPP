@@ -217,7 +217,7 @@ void Game::load()
 	crosshair = new SpriteComponent(crosshairActor, Assets::getTexture("Crosshair"));
 	
 	TargetActor* t = new TargetActor();
-	t->setPosition(Vector3(5785.0f, 3350.0f, 200.0f));
+	t->setPosition(Vector3(2975.0f, 130.0f, 200.0f));
 }
 
 void Game::processInput()

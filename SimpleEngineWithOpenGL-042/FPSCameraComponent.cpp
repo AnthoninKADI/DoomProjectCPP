@@ -36,3 +36,8 @@ void FPSCameraComponent::setMaxPitch(float pitch)
 	maxPitch = pitch;
 }
 
+Vector3 FPSCameraComponent::getForward() const
+{
+	return Vector3::transform(owner.getForward(), Quaternion(owner.getRight(), pitch));  // Ou retourne la direction déjà calculée
+}
+

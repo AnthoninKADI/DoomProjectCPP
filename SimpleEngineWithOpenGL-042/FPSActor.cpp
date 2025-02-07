@@ -7,6 +7,7 @@
 #include "FPSCameraComponent.h"
 #include "MeshComponent.h"
 #include "BallActor.h"
+#include "BallMoveComponent.h"
 #include "BoxComponent.h"
 #include "Collisions.h"
 
@@ -157,7 +158,7 @@ void FPSActor::actorInput(const InputState& inputState)
 void FPSActor::shoot()
 {
     Vector3 start = getPosition();
-    Vector3 dir = getForward(); 
+    Vector3 dir = cameraComponent->getForward(); 
     dir.normalize();
 
     BallActor* ball = new BallActor();
@@ -165,6 +166,10 @@ void FPSActor::shoot()
     Vector3 offset(0.0f, 0.0f, -60.0f);
     ball->setPosition(start + offset);
     ball->rotateToNewForward(dir);
+
+    // Applique la vitesse à la balle dans la direction où tu regardes
+    ball->getMoveComponent()->setForwardDirection(dir);  // Utilise la direction de la caméra pour le mouvement
+    ball->getMoveComponent()->setForwardSpeed(2000.0f);  // Applique la vitesse définie
 }
 
 void FPSActor::setFootstepSurface(float value) {}

@@ -34,3 +34,8 @@ void BallActor::hitTarget()
 {
 	getGame().getDoors().at(0)->setStateDoor(true);
 }
+
+BallMoveComponent* BallActor::getMoveComponent() const
+{
+	return ballMove;
+}
