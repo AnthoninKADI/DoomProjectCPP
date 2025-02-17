@@ -36,7 +36,7 @@ FPSActor::FPSActor() :
 
 void FPSActor::resolveCollision(const AABB& playerBox, const AABB& otherBox, Vector3& pos)
 {
-    // Calculate all our differences
+
     float dx1 = otherBox.max.x - playerBox.min.x;
     float dx2 = otherBox.min.x - playerBox.max.x;
     float dy1 = otherBox.max.y - playerBox.min.y;
@@ -44,14 +44,13 @@ void FPSActor::resolveCollision(const AABB& playerBox, const AABB& otherBox, Vec
     float dz1 = otherBox.max.z - playerBox.min.z;
     float dz2 = otherBox.min.z - playerBox.max.z;
 
-    // Set dx to whichever of dx1/dx2 have a lower abs
+
     float dx = Maths::abs(dx1) < Maths::abs(dx2) ? dx1 : dx2;
-    // Ditto for dy
+
     float dy = Maths::abs(dy1) < Maths::abs(dy2) ? dy1 : dy2;
-    // Ditto for dz
+
     float dz = Maths::abs(dz1) < Maths::abs(dz2) ? dz1 : dz2;
 
-    // Whichever is closest, adjust x/y position
     if (Maths::abs(dx) <= Maths::abs(dy) && Maths::abs(dx) <= Maths::abs(dz))
     {
         pos.x += dx;
@@ -72,26 +71,32 @@ void FPSActor::updateActor(float dt)
 
     if (!Maths::nearZero(moveComponent->getAngularSpeed()))
     {
+        /*
         Quaternion rotation = getRotation();
         float angle = moveComponent->getAngularSpeed() * dt;  // Calcul de l'angle en fonction du deltaTime
         Quaternion incrementalRotation(Vector3::unitY, angle);  // Rotation autour de l'axe Y (vertical)
         rotation = Quaternion::concatenate(rotation, incrementalRotation);
         setRotation(rotation);
+        */
+        
+         float angle = moveComponent->getAngularSpeed() * dt;
+         Quaternion incrementalRotation(Vector3::unitZ, angle);
+                 
+         setRotation(Quaternion::concatenate(getRotation(), incrementalRotation));
     }
 
-    // Play the footstep if we're moving and haven't recently
     lastFootstep -= dt;
     if (!Maths::nearZero(moveComponent->getForwardSpeed()) && lastFootstep <= 0.0f)
     {
         lastFootstep = 0.5f;
     }
 
-    // Update position and rotation of the FPS model relatively to the player position
     Vector3 modelPosition = getPosition();
     modelPosition += getForward() * MODEL_OFFSET.x;
     modelPosition += getRight() * MODEL_OFFSET.y;
     modelPosition.z += MODEL_OFFSET.z;
     FPSModel->setPosition(modelPosition);
+    
     Quaternion q = getRotation();
     q = Quaternion::concatenate(q, Quaternion(getRight(), cameraComponent->getPitch()));
     FPSModel->setRotation(q);
@@ -104,7 +109,6 @@ void FPSActor::actorInput(const InputState& inputState)
     float forwardSpeed = 0.0f;
     float angularSpeed = 0.0f;
 
-    // Forward and backward movement
     if (inputState.keyboard.getKeyValue(SDL_SCANCODE_W))
     {
         forwardSpeed += 1000.0f;
@@ -115,6 +119,7 @@ void FPSActor::actorInput(const InputState& inputState)
     }
 
     // Rotation left and right
+    /*
     if (inputState.keyboard.getKeyValue(SDL_SCANCODE_A))
     {
         angularSpeed -= Maths::pi;
@@ -128,11 +133,11 @@ void FPSActor::actorInput(const InputState& inputState)
     {
         cameraComponent->setPitch(0.0f);
     }
-
+    */
+    
     moveComponent->setForwardSpeed(forwardSpeed);
     moveComponent->setAngularSpeed(angularSpeed);
 
-    // Mouse movement for pitch and yaw
     Vector2 mousePosition = inputState.mouse.getPosition();
     float x = mousePosition.x;
     float y = mousePosition.y;
@@ -155,14 +160,12 @@ void FPSActor::actorInput(const InputState& inputState)
     }
     cameraComponent->setPitchSpeed(pitchSpeed);
 
-    // Update forward direction for flying movement
     Vector3 fullDirection = getForward();
     Quaternion pitchRotation(getRight(), cameraComponent->getPitch());
     fullDirection = Vector3::transform(fullDirection, pitchRotation);
     fullDirection.normalize();
     moveComponent->setForwardDirection(fullDirection);
 
-    // Shoot
     if (inputState.mouse.getButtonState(1) == ButtonState::Pressed)
     {
         shoot();

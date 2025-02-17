@@ -10,22 +10,23 @@ FPSCameraComponent::FPSCameraComponent(Actor* ownerP):
 
 void FPSCameraComponent::update(float dt)
 {
-	CameraComponent::update(dt);
-
-	Vector3 cameraPosition = owner.getPosition();
-	pitch += pitchSpeed * dt;
-	
-	//pitch = Maths::clamp(pitch, -maxPitch, maxPitch);
-	
-	Quaternion q { owner.getRight(), pitch };
-	Vector3 viewForward = Vector3::transform(owner.getForward(), q);
-
-	Vector3 target = cameraPosition + viewForward * 100.0f;
-	Vector3 up = Vector3::transform(Vector3::unitZ, q);
-	Matrix4 view = Matrix4::createLookAt(cameraPosition, target, up);
-	setViewMatrix(view);
-
-	Vector3 forward = owner.getForward();
+		CameraComponent::update(dt);
+    
+    	Vector3 cameraPosition = owner.getPosition();
+    	pitch += -pitchSpeed * dt;
+    	
+    	pitch = Maths::clamp(pitch, -maxPitch, maxPitch);
+    	
+    	Quaternion pitchQuat = Quaternion(owner.getRight(), -pitch);
+    	
+    	Vector3 viewForward = Vector3::transform(Vector3::unitX, pitchQuat);
+    	viewForward = Vector3::transform(viewForward, owner.getRotation());
+    
+    	Vector3 target = cameraPosition + viewForward * 100.0f;
+    	Vector3 up = Vector3::transform(Vector3::unitZ, owner.getRotation());
+    
+    	Matrix4 view = Matrix4::createLookAt(cameraPosition, target, up);
+    	setViewMatrix(view);
 }
 
 void FPSCameraComponent::setPitchSpeed(float speed)
@@ -40,7 +41,9 @@ void FPSCameraComponent::setMaxPitch(float pitch)
 
 Vector3 FPSCameraComponent::getForward() const
 {
-	return Vector3::transform(owner.getForward(), Quaternion(owner.getRight(), pitch));  
+    	Quaternion pitchQuat(owner.getRight(), -pitch);
+    	Vector3 forward = Vector3::transform(Vector3::unitX, owner.getRotation());
+    	return Vector3::transform(forward, pitchQuat);  
 }
 
 void FPSCameraComponent::setPitch(float pitchValue)
