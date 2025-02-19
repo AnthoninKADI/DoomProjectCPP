@@ -75,8 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\SDL\SDL2-2.0.12\include;..\SDL\SDL2_image-2.0.5\include;..\SDL\SDL2_mixer-2.0.4\include;..\SDL\SDL2_ttf-2.0.15\include;..\SDL\glew-2.1.0\include\GL;..\SDL\rapidjson\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\SDL\SDL2-2.0.12\lib\x64;..\SDL\SDL2_image-2.0.5\lib\x64;..\SDL\SDL2_mixer-2.0.4\lib\x64;..\SDL\SDL2_ttf-2.0.15\lib\x64;..\SDL\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\SDL\SDL2-2.28.5 VC\include;..\SDL\SDL2_image-2.0.5\include;..\SDL\SDL2_mixer-2.0.4\include;..\SDL\SDL2_ttf-2.0.15\include;..\SDL\glew-2.1.0\include\GL;..\SDL\rapidjson\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\SDL\SDL2_image-2.0.5\lib\x64;..\SDL\SDL2_mixer-2.0.4\lib\x64;..\SDL\SDL2_ttf-2.0.15\lib\x64;..\SDL\glew-2.1.0\lib\Release\x64;..\SDL\SDL2-2.28.5 VC\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -102,7 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\SDL\SDL2-2.0.12\include;..\SDL\SDL2_image-2.0.5\include;..\SDL\SDL2_mixer-2.0.4\include;..\SDL\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SDL\SDL2-2.28.5 VC\include;..\SDL\SDL2_image-2.0.5\include;..\SDL\SDL2_mixer-2.0.4\include;..\SDL\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
